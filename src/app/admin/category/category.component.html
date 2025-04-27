@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th >#</th>
-      <th>Adı</th>
+      <th>Kategori Adı</th>
       <th>İşlemler</th>
     </tr>
   </thead>
@@ -13,10 +13,10 @@
   <tr *ngFor="let item of categoryList">
 
       <td>{{ item.id }}</td>
-      <td>{{ item.categoryName }}</td>
+      <td>{{ item.categoryName}}</td>
       <td>
         <button class="btn btn-danger">Sil</button>
-        <br>
+
         <button class="btn btn-info ">Güncelle</button>
       </td>
     </tr>

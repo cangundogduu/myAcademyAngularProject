@@ -19,8 +19,8 @@ constructor(private categoryService: CategoryService) {
 
 getAll(){
   this.categoryService.getAll().subscribe({
-    next: values=> this.categoryList=values,
-    error: error=> console.log(error)
+    next: values => this.categoryList=values,
+    error: err => console.log(err)
   })
 }
 
