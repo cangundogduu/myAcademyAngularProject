@@ -16,8 +16,8 @@
       <td>{{ product.description }}</td>
       <td>{{ product.category.categoryName }}</td>
       <td>
-        <button class="btn btn-danger" style="margin-right: 5px;"><i class="fa fa-trash"></i>Sil</button>
-        <button class="btn btn-primary" ><i class="fa fa-pencil" aria-hidden="true"></i>Güncelle</button>
+        <button class="btn btn-danger" style="margin-right: 5px;"><i class="fa fa-trash" (click)="delete(product.id)"></i>Sil</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(product)"><i class="fa fa-pencil" aria-hidden="true" ></i>Güncelle</button>
       </td>
     </tr>
   </tbody>
@@ -88,6 +88,73 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
         <button type="submit" class="btn btn-primary">Kaydet</button>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+
+
+<!--Edit-Update Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form #editForm="ngForm" (ngSubmit)="update();">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editModalLabel">Ürün Güncelle</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+          <div class="form-group ">
+            <label class="form-label">Ürün Adı</label>
+            <input type="text" [(ngModel)]="editProduct.productName" class="form-control" name="productName" placeholder="Ürün Adı" required="">
+
+            <div *ngIf="errors?.ProductName" class="alert alert-danger mt-2">
+            <span *ngFor="let error of errors.ProductName">{{error}}</span>
+            </div>
+
+          </div>
+
+          <div class="form-group ">
+            <label class="form-label">Ürün Görseli</label>
+            <input type="text" [(ngModel)]="editProduct.imageUrl" class="form-control" name="imageUrl" placeholder="Ürün Görseli" required="">
+
+            <div *ngIf="errors?.ImageUrl" class="alert alert-danger mt-2">
+              <span *ngFor="let error of errors.ImageUrl">{{error}}</span>
+              </div>
+
+          </div>
+
+          <div class="form-group ">
+            <label class="form-label">Açıklama</label>
+            <textarea type="text" [(ngModel)]="editProduct.description" class="form-control" name="description" placeholder="Açıklama" required=""></textarea>
+
+            <div *ngIf="errors?.Description" class="alert alert-danger mt-2">
+              <span *ngFor="let error of errors.Description">{{error}}</span>
+              </div>
+
+          </div>
+
+          <div class="form-group ">
+            <label class="form-label">Kategori</label>
+            <select class="form-control" [(ngModel)]="editProduct.categoryId" name="categoryId">
+             <option selected="editProduct.categoryId"  *ngFor="let category of categoryList" value="{{category.id}}">{{ category.categoryName }}</option>
+            </select>
+
+            <div *ngIf="errors?.CategoryId" class="alert alert-danger mt-2">
+              <span *ngFor="let error of errors.CategoryId">{{error}}</span>
+              </div>
+
+          </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!editForm.dirty">Güncelle</button>
       </div>
     </div>
   </form>

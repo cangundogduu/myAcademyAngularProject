@@ -4,7 +4,14 @@ import { Component } from '@angular/core';
   selector: 'app-main-layout',
   standalone: false,
   templateUrl: './main-layout.component.html',
-  styleUrl: './main-layout.component.css'
+  styleUrls: [
+    './main-layout.component.css',
+    "../../../../assets/vendor/bootstrap-icons/bootstrap-icons.css",
+    "../../../../assets/vendor/aos/aos.css",
+    "../../../../assets/vendor/glightbox/css/glightbox.min.css",
+    "../../../../assets/vendor/swiper/swiper-bundle.min.css"
+
+  ]
 })
 export class MainLayoutComponent {
 

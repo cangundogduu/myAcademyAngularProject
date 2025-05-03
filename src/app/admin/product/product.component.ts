@@ -62,5 +62,61 @@ create(){
 
 
 
+onSelected(model){
+  this.editProduct = model;
+  console.log(this.editProduct);
+}
+
+
+
+
+ update(){
+  this.productService.update(this.editProduct.id,this.editProduct).subscribe({
+    error: err => {
+      if(err.status===400){
+        console.log(err);
+        this.errors = err.error.errors;
+      }
+    },
+    complete: () => Swal.fire({
+        title: "Başarılı!",
+        text: "Ürün Başarı İle Güncellendi.",
+        icon: "success"
+      }).then(() => location.reload())
+  })
+ }
+
+
+
+ delete(id:number){
+   Swal.fire({
+     title: "Silmek İstediğinize Emin Misiniz?",
+     text: "Bu işlemi geri alamazsınız!",
+     icon: "warning",
+     showCancelButton: true,
+     confirmButtonColor: "#3085d6",
+     cancelButtonColor: "#d33",
+     confirmButtonText: "Evet, Sil!",
+     cancelButtonText: "Hayır, İptal Et!"
+   }).then((result) => {
+     if (result.isConfirmed) {
+       this.productService.delete(id).subscribe({
+         error: err => console.log(err),
+         complete: () => {
+           Swal.fire({
+             title: "Silindi!",
+             text: "Ürün Başarı İle Silindi.",
+             icon: "success"
+           })
+           this.getAll();
+         }
+       })
+
+     }
+   });
+ }
+
+
+
 
 }
