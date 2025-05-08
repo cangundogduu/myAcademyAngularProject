@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './main-layout.component.html',
   styleUrls: [
     './main-layout.component.css',
-    "../../../../assets/vendor/bootstrap-icons/bootstrap-icons.css",
+  /*   "../../../../assets/vendor/bootstrap-icons/bootstrap-icons.css",
     "../../../../assets/vendor/aos/aos.css",
     "../../../../assets/vendor/glightbox/css/glightbox.min.css",
-    "../../../../assets/vendor/swiper/swiper-bundle.min.css"
+    "../../../../assets/vendor/swiper/swiper-bundle.min.css" */
 
   ]
 })
